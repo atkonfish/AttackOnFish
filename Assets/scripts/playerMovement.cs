@@ -3,13 +3,12 @@ using System.Collections;
 
 public class playerMovement : MonoBehaviour {
     
-    //Default speed for player.
-    float speed = 5.0f;
-    //Border for the submarine. used for movement restriction
-    float subBoundaryRadius = 1f;
-    
+   
+    float speed = 5.0f;  //Default speed for player.
+    float subBoundaryRadius = 1f;   //Border for the submarine. used for movement restriction
 
-	void Update () {
+
+    void Update () {
 
         float screenRatio = (float)Screen.width / (float)Screen.height;
         float widthOrtho = Camera.main.orthographicSize * screenRatio;
