@@ -5,5 +5,6 @@ public class bad1hit : MonoBehaviour {
 
 	void OnTriggerEnter2D (Collider2D other) {
 		Destroy(gameObject);
+		scoreCounter.score += 50;
 	}
 }
