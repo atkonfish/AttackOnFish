@@ -12,7 +12,7 @@ public class bulletscript : MonoBehaviour {
         
         //Moves bullet across the screen.
         Vector3 pos = transform.position;
-        Vector3 velocity = new Vector3(speed * Time.deltaTime, 0 , 0);
+        Vector3 velocity = new Vector3(Mathf.Cos(transform.rotation.eulerAngles.z / 180 * Mathf.PI) * speed * Time.deltaTime, Mathf.Sin(transform.rotation.eulerAngles.z / 180 * Mathf.PI) * speed * Time.deltaTime , 0);
     
         pos += transform.rotation * velocity;
 
@@ -24,8 +24,9 @@ public class bulletscript : MonoBehaviour {
         }
     }
 	
-	void OnTriggerEnter2D (Collider2D other) {
-		Destroy(gameObject);
+	void OnTriggerEnter2D (Collider2D coll) {
+        if (coll.gameObject.tag == "enemy")
+			Destroy(gameObject);
 	}
 	
 }
