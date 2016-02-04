@@ -1,16 +1,36 @@
 ﻿using UnityEngine;
 using System.Collections;
+ 
+
+
 
 public class bad1hit : MonoBehaviour {
+   public int hp = 2;
+   public int hitScore = 50;
+   // public GameObject enemy;
 
-	void OnTriggerEnter2D (Collider2D coll) {
-		if (coll.gameObject.tag == "bullet") {
-			Destroy(gameObject);
-			scoreCounter.score += 50;
-		}
-		if (coll.gameObject.tag == "player") {
-			Destroy(gameObject);
-			scoreCounter.score -= 1000;
-		}
-	}
+
+    private int enemy = 0;
+
+	void OnTriggerEnter2D(Collider2D coll)
+    {
+        if (coll.gameObject.tag == "playerbullet")
+
+        {
+            hp--;
+            scoreCounter.score += hitScore;
+        }
+
+        if (coll.gameObject.tag == "player")
+        {
+            hp = hp - 4;
+        }
+  
+        if (hp <= 0)
+        {
+            Destroy(gameObject);
+            enemy++;
+        }
+    }
 }
+

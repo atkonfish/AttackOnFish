@@ -25,7 +25,7 @@ public class bulletscript : MonoBehaviour {
     }
 	
 	void OnTriggerEnter2D (Collider2D coll) {
-		if (coll.gameObject.tag != "item")
+        if (coll.gameObject.tag == "enemy")
 			Destroy(gameObject);
 	}
 	
