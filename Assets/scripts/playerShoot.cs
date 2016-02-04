@@ -12,13 +12,32 @@ public class playerShoot : MonoBehaviour {
     //Defines the cool down time for the delay
     float coolDown = 0;
 	
+	public static bool itemBoost = false;
+	float boostDuration;
+	
+	void Start() {
+		boostDuration = 5.0f;
+	}
+	
 	void Update () {
         coolDown -= Time.deltaTime; 
-        if (Input.GetKey(KeyCode.A) && coolDown <= 0){
+        if (Input.GetKey(KeyCode.A) && coolDown <= 0 && !itemBoost){
             coolDown = delayshot;
             //Creates a bullet from the position of the gun barrel.
             Instantiate(bullet, barrel.transform.position, Quaternion.identity);
-        }
+        } else if (Input.GetKey(KeyCode.A) && coolDown <= 0 && itemBoost) {
+			coolDown = delayshot;
+			Instantiate(bullet, barrel.transform.position, Quaternion.Euler(0, 0, 0));
+			Instantiate(bullet, barrel.transform.position, Quaternion.Euler(0, 0, 10));
+			Instantiate(bullet, barrel.transform.position, Quaternion.Euler(0, 0, -10));
+		}
+		if (itemBoost) {
+			boostDuration -= Time.deltaTime;
+			if (boostDuration <= 0) {
+				itemBoost = false;
+				boostDuration = 5.0f;
+			}
+		}
     }
    
 }
